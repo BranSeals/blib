@@ -15,8 +15,6 @@ import atexit
 
 from blib import bcli
 
-print(bcli.SCRIPT_NAME)
-
 __version__ = "1.0.0"
 __author__ = "Bran Seals"
 __copyright__ = "Copyright 2022"
