@@ -16,7 +16,10 @@ __copyright__ = "Copyright 2022"
 __email__ = "bran.seals.dev@gmail.com"
 __status__ = "Dev"
 
-SCRIPT_NAME = pathlib.Path(__main__.__file__).stem
+try:
+    SCRIPT_NAME = pathlib.Path(__main__.__file__).stem
+except AttributeError:  # avoid issues with ipython
+    SCRIPT_NAME = os.path.basename(os.environ['_'])
 USER = pwd.getpwuid(os.getuid()).pw_name
 
 

@@ -11,19 +11,17 @@ while iterating through a file directory) add them to the `ignored`
 list to omit any line that contains them.
 """
 
-import __main__
 import atexit
-import pathlib
 
 from blib import bcli
+
+print(bcli.SCRIPT_NAME)
 
 __version__ = "1.0.0"
 __author__ = "Bran Seals"
 __copyright__ = "Copyright 2022"
 __email__ = "bran.seals.dev@gmail.com"
 __status__ = "Production"
-
-SCRIPT_NAME = pathlib.Path(__main__.__file__).stem
 
 errors = []
 ignored = [
@@ -73,4 +71,4 @@ def send_report() -> None:
 
     # Check again because list could now be empty
     if errors:
-        bcli.mail(format_report(), f'{SCRIPT_NAME} errors')
+        bcli.mail(__format_report(), f'{bcli.SCRIPT_NAME} errors')
