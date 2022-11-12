@@ -53,9 +53,3 @@ def run(list_: list[str], str_: str = None):
 def mail(body: str, subject: str = SCRIPT_NAME, user: str = USER) -> None:
     """Send system mail to the user."""
     run(['mail', '-s', subject, user], body)
-
-
-def create_dir_if_missing(directory: pathlib.PosixPath) -> None:
-    """Create a directory if one does not exist."""
-    if not directory.exists():
-        pathlib.Path(directory).mkdir(parents=True, exist_ok=True)
