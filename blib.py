@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""A personal library of Python functions.
+"""A personal library of (old) Python functions.
+
+These are old and should not be used. Modernize and move into separate modules
+and test each function thoroughly.
 """
 
 import datetime
@@ -16,7 +19,7 @@ from typing import List
 __version__ = "0.1.0"
 __author__ = "Bran Seals"
 __copyright__ = "Copyright 2021"
-__email__ = "brandon.seals@icloud.com"
+__email__ = "bran.seals.dev@gmail.com"
 __status__ = "Development"
 
 SCRIPT_NAME = os.path.basename(__file__)
