@@ -35,7 +35,7 @@ def report_error(error: str) -> None:
     errors.append(error)
 
 
-def format_report() -> str:
+def __format_report() -> str:
     """Apply formatting to the emailed error report.
 
     Using markdown format so [] appears as checkbox if text is copied.
@@ -48,7 +48,7 @@ def format_report() -> str:
 
 
 @atexit.register
-def send_report() -> None:
+def __send_report() -> None:
     """Send a formatted error report to a system user.
 
     Removes lines containing elements from `ignored`. Be careful if you
