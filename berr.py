@@ -15,7 +15,7 @@ import __main__
 import atexit
 import pathlib
 
-import bcli
+from blib import bcli
 
 __version__ = "1.0.0"
 __author__ = "Bran Seals"
