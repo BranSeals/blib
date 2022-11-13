@@ -28,10 +28,8 @@ def git_init(**kwargs) -> None:
     global REPO_PATH
     repo = kwargs.get('repo') or REPO_PATH
 
-    if (
-        bfile.create_dir_if_missing(repo)
-        or not pathlib.Path(repo, '.git').exists()
-    ):
+    bfile.create_dirs_if_missing(repo)
+    if not pathlib.Path(repo, '.git').exists():
         bcli.run(["git", "-C", repo, "init"])
 
 
