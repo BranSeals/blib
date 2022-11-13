@@ -1,20 +1,20 @@
-# blib
-A personal library of small utility functions.
+# About
+A personal library of small utility functions that will be expanded as needed.
 
 ## bcli
-Command-line operations.
+Handles common terminal operations, like running a command.
 
 ## berr
-Error reporting via `mail` utility
+Report runtime errors via `mail` utility. Errors are added to a list, formatted as a checklist, then mailed once the module is unloaded.
 
 ## bfile
-File handling
+Basic file handling.
 
 ## bgit
-Local git actions
+Handles git operations such as init, add, and commit.
 
-## blib
-A big gross mess I need to break apart, fix bugs, and modernize.
+## btime
+Functions related to datetime.
 
 ## butil
 Miscellaneous utility functions.
