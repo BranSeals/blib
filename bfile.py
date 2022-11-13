@@ -40,24 +40,22 @@ def list_dir_filepaths(directory: str) -> list[pathlib.Path]:
     return filepaths
 
 
-def create_dir_if_missing(directory: pathlib.Path) -> bool:
+def create_dirs_if_missing(*directories) -> bool:
     """
     Create a directory if one does not exist.
 
     Returns True if directory was created.
     """
-    if not pathlib.Path(directory).exists():
-        pathlib.Path(directory).mkdir(parents=True, exist_ok=True)
-        return True
-    else:
-        return False
+    for dir in directories:
+        if not pathlib.Path(dir).exists():
+            pathlib.Path(dir).mkdir(parents=True, exist_ok=True)
 
 
 def create_file(filepath: pathlib.Path, content: str = None) -> pathlib.Path:
     """
     Create a file with the given content at the target filepath.
     """
-    create_dir_if_missing(filepath)
+    create_dirs_if_missing(filepath)
     if content:
         pathlib.Path(filepath).write_text(content)
     else:
