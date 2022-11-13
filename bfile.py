@@ -4,42 +4,48 @@
 """Handle file input and output.
 """
 
-import os
 import pathlib
 
-__version__ = "0.0.0"
+__version__ = "0.2.0"
 __author__ = "Bran Seals"
 __copyright__ = "Copyright 2022"
 __email__ = "bran.seals.dev@gmail.com"
 __status__ = "Dev"
 
 
-def get_file_list_str(filepath: pathlib.PosixPath) -> list[str]:
-    """Return list of files in a given directory.
+def list_dir_filenames(directory: pathlib.Path) -> list[str]:
+    """
+    Return list of filenames in a given directory.
 
     Questions:
         * Q: Do I need to separate by files/directories for this script?
     """
-    return os.listdir(filepath)
+    filenames = []
+    files = pathlib.Path(directory).iterdir()
+    if files:
+        for f in files:
+            filenames.append(f.name)
+    return filenames
 
 
-def listdir(path: str) -> list[pathlib.PosixPath]:
-    """List full filepaths from a directory in pathlib format.
-
-    TODO: How is this different from abovein terms of usefulness? Test it.
+def list_dir_filepaths(directory: str) -> list[pathlib.Path]:
     """
-    filenames = os.listdir(path)
+    List full filepaths from a directory in pathlib format.
+    """
     filepaths = []
-    if filenames:
-        for f in filenames:
-            filepaths.append(pathlib.Path(path, f))
+    files = pathlib.Path(directory).iterdir()
+    if files:
+        for f in files:
+            filepaths.append(f)
     return filepaths
 
 
-def create_dir_if_missing(directory: pathlib.PosixPath) -> bool:
-    """Create a directory if one does not exist.
+def create_dir_if_missing(directory: pathlib.Path) -> bool:
+    """
+    Create a directory if one does not exist.
 
-    Returns True if directory was created."""
+    Returns True if directory was created.
+    """
     if not pathlib.Path(directory).exists():
         pathlib.Path(directory).mkdir(parents=True, exist_ok=True)
         return True
@@ -47,6 +53,26 @@ def create_dir_if_missing(directory: pathlib.PosixPath) -> bool:
         return False
 
 
-def load_content(filepath: pathlib.PosixPath) -> str:
-    with open(filepath, 'r') as f:
-        return f.read()
+def create_file(filepath: pathlib.Path, content: str = None) -> pathlib.Path:
+    """
+    Create a file with the given content at the target filepath.
+    """
+    create_dir_if_missing(filepath)
+    if content:
+        pathlib.Path(filepath).write_text(content)
+    else:
+        pathlib.Path(filepath).touch()
+
+
+def write_text(filepath: pathlib.Path, content: str = None) -> None:
+    """
+    Open the file in text mode, append to it, and close the file.
+    """
+    pathlib.Path(filepath).open(mode='w+').write(content)
+
+
+def append_text(filepath: pathlib.Path, content: str = None) -> None:
+    """
+    Open the file in text mode, append to it, and close the file.
+    """
+    pathlib.Path(filepath).open(mode='a+').write(content)
