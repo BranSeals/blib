@@ -52,9 +52,7 @@ def git_commit(**kwargs) -> None:
     repo = kwargs.get('repo') or REPO_PATH
     message = kwargs.get('message') or f"auto-commit by {bcli.SCRIPT_NAME}"
 
-    cmd = bcli.run(["git", "-C", repo, "commit", "-m", message])
-    if "nothing to commit" in cmd.stdout:
-        berr.report_error("git commit failed")
+    bcli.run(["git", "-C", repo, "commit", "-m", message])
 
 
 def git_add_all_and_commit(**kwargs) -> None:
