@@ -23,17 +23,11 @@ def get_dt():
     return datetime.datetime.now().strftime(DT_FILE_FORMAT)
 
 
-def get_dt_str(**transforms) -> str:
+def get_dt_str(**kwargs) -> str:
     """Return datetime as a string with optional modification.
 
     Options:
-        * prefix - prepend string to datetime
-        * postfix - append string to datetime
+        * prefix: prepend string to datetime
+        * postfix: append string to datetime
     """
-    dt_str = str(get_dt())
-    for mod, value in transforms.items():
-        if mod == "prefix":
-            dt_str = value + dt_str
-        elif mod == "postfix":
-            dt_str = dt_str + value
-    return dt_str
+    return kwargs.get('prefix') + str(get_dt()) + kwargs.get('postfix')
